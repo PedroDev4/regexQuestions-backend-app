@@ -14,7 +14,7 @@ class CreateUserUseCase {
 
         const userExists = await this.usersRepository.findByEmail(email);
 
-        if (!name || !email || !answeredQuestions) {
+        if (!name || !email) {
             throw new Error("Invalid required parameters!");
         }
 
@@ -30,7 +30,6 @@ class CreateUserUseCase {
         });
 
         return user;
-
     }
 
 }
