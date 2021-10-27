@@ -6,11 +6,11 @@ import { FindUserAnsweredQuestionsUseCase } from "./FindUserAnsweredQuestionsUse
 class FindUserAnsweredQuestionsController {
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, email } = request.query;
+        const { id } = request.params;
 
         const findUserAnsweredQuestionsUseCase = container.resolve(FindUserAnsweredQuestionsUseCase);
 
-        const userAnsweredQuestions = await findUserAnsweredQuestionsUseCase.execute(String(id), String(email));
+        const userAnsweredQuestions = await findUserAnsweredQuestionsUseCase.execute(id);
 
         return response.status(200).json(userAnsweredQuestions);
     }

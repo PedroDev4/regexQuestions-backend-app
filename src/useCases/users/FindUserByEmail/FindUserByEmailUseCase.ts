@@ -15,7 +15,7 @@ class FindUserByEmailUseCase {
             throw new Error("Invalid email provided");
         }
 
-        const user = await this.usersRepository.findById(email);
+        const user = await this.usersRepository.findByEmail(email);
 
         if (!user) {
             throw new Error("User does not exists.")

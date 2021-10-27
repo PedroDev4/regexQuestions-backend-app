@@ -29,15 +29,15 @@ const deleteQuestionController = new DeleteQuestionController();
 
 routes.post("/users", createUserController.handle);
 routes.get("/users/:id", findUserByIdController.handle);
-routes.get("/users/:email", findUserByEmailController.handle);
-routes.get("/users/questions", findUserAnsweredQuestionsController.handle);
-routes.put("/users", updateUserController.handle);
-routes.delete("/users", deleteUserController.handle);
+routes.get("/users/email/:email", findUserByEmailController.handle);
+routes.get("/users/questions/:id", findUserAnsweredQuestionsController.handle);
+routes.put("/users/:id", updateUserController.handle);
+routes.delete("/users/:id", deleteUserController.handle);
 
 routes.post("/questions", createQuestionController.handle);
 routes.get("/questions/:id", findQuestionByIdController.handle);
 routes.get("/questions", findAllQuestionsController.handle);
-routes.put("/questions", updateQuestionController.handle);
-routes.delete("/questions", deleteQuestionController.handle);
+routes.put("/questions/:id", updateQuestionController.handle);
+routes.delete("/questions/:id", deleteQuestionController.handle);
 
 export { routes }; 

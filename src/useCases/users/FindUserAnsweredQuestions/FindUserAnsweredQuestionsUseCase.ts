@@ -9,13 +9,13 @@ class FindUserAnsweredQuestionsUseCase {
         private usersRepository: IUsersRepository
     ) { }
 
-    async execute(id?: string, email?: string): Promise<string[]> {
+    async execute(id?: string): Promise<string[]> {
 
-        if (!id || !email) {
-            throw new Error("Invalid email or identifier provided");
+        if (!id) {
+            throw new Error("Invalid identifier provided");
         }
 
-        const user: User = id ? await this.usersRepository.findById(id) : await this.usersRepository.findByEmail(email)
+        const user = await this.usersRepository.findById(id);
 
         if (!user) {
             throw new Error("User does not exists.")
