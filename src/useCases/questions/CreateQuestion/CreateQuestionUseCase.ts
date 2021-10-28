@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateQuestionsDTO } from "../../../DTOs/ICreateQuestionsDTO";
 import { Question } from "../../../entities/Question";
+import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
 
 
@@ -15,7 +16,7 @@ class CreateQuestionUseCase {
     async execute({ title, type, correctAnswer, body }: ICreateQuestionsDTO): Promise<Question> {
 
         if (!title || !type || !correctAnswer || !body) {
-            throw new Error('Invalid required parameters');
+            throw new AppError('Invalid required parameters');
         }
 
         const question = await this.questionsRepository.create({

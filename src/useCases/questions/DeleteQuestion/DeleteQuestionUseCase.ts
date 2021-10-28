@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
 
 
@@ -15,7 +16,7 @@ class DeleteQuestionUseCase {
         const question = await this.questionsRepository.findById(id);
 
         if (!id || !question) {
-            throw new Error('Invalid identifier provided or question does not exists');
+            throw new AppError('Invalid identifier provided or question does not exists');
         }
 
         await this.questionsRepository.delete(id);

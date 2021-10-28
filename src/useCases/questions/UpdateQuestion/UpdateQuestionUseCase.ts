@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateQuestionsDTO } from "../../../DTOs/IUpdateQuestionsDTO";
+import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
 
 
@@ -13,13 +14,13 @@ class UpdateQuestionUseCase {
     async execute({ id, title, type, correctAnswer, body }: IUpdateQuestionsDTO): Promise<void> {
 
         if (!id) {
-            throw new Error('Invalid required identifier');
+            throw new AppError('Invalid required identifier');
         }
 
         const question = await this.questionsRepository.findById(id);
 
         if (!question) {
-            throw new Error('Question does not exists');
+            throw new AppError('Question does not exists');
         }
 
         await this.questionsRepository.update({

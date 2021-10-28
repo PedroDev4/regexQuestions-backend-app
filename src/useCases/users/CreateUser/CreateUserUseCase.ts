@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateUserDTO } from "../../../DTOs/ICreateUserDTO";
 import { User } from "../../../entities/User";
+import { AppError } from "../../../Errors/AppError";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
 @injectable()
@@ -15,11 +16,11 @@ class CreateUserUseCase {
         const userExists = await this.usersRepository.findByEmail(email);
 
         if (!name || !email) {
-            throw new Error("Invalid required parameters!");
+            throw new AppError("Invalid required parameters!");
         }
 
         if (userExists) {
-            throw new Error(`User "${userExists.name}-${userExists.email}" already exists`);
+            throw new AppError(`User "${userExists.name}-${userExists.email}" already exists`);
         }
 
         const user = await this.usersRepository.create({

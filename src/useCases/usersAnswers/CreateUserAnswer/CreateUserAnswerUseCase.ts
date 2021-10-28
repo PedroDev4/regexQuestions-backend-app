@@ -3,6 +3,7 @@ import { ICreateUserAnswersDTO } from "../../../DTOs/ICreateUserAnswersDTO";
 import { Question } from "../../../entities/Question";
 import { User } from "../../../entities/User";
 import { UserAnswer } from "../../../entities/UserAnswer";
+import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
 import { IUsersAnswersRepository } from "../../../repositories/IUsersAnswersRepository";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
@@ -27,15 +28,15 @@ class CreateUserAnswerUseCase {
         let updatedUserScore: number = 0;
 
         if (!this.VerifyParameters({ user_id, userAnswer, question_id })) {
-            throw new Error('Invalid required parameters.');
+            throw new AppError('Invalid required parameters.');
         }
 
         if (existentUserAnswer || !questionExists) {
-            throw new Error('This user has already answered this question id or question does not exists');
+            throw new AppError('This user has already answered this question id or question does not exists');
         }
 
         if (!userExists) {
-            throw new Error('User does not exists');
+            throw new AppError('User does not exists');
         }
 
         const createdUserAnswer = await this.usersAnswersRepository.create({

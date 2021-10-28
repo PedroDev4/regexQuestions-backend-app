@@ -2,6 +2,7 @@ import { inject, injectable } from "tsyringe";
 import { IUpdateUserAnswersDTO } from "../../../DTOs/IUpdateUserAnswerDTO";
 import { Question } from "../../../entities/Question";
 import { User } from "../../../entities/User";
+import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
 import { IUsersAnswersRepository } from "../../../repositories/IUsersAnswersRepository";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
@@ -25,11 +26,11 @@ class UpdateUserAnswerUseCase {
         let updatedUserScore: number = 0;
 
         if (!id) {
-            throw new Error("invalid required identifier provided");
+            throw new AppError("invalid required identifier provided");
         }
 
         if (!existentUserAnswer) {
-            throw new Error("UserAnswer does not exists");
+            throw new AppError("UserAnswer does not exists");
         }
 
         const questionsPush: string[] = [question_id];

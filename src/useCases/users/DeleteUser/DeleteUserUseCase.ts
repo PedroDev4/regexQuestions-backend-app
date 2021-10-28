@@ -1,4 +1,5 @@
 import { injectable, inject } from "tsyringe";
+import { AppError } from "../../../Errors/AppError";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
 @injectable()
@@ -11,13 +12,13 @@ class DeleteUserUseCase {
     async execute(id: string): Promise<void> {
 
         if (!id) {
-            throw new Error("Invalid identifier");
+            throw new AppError("Invalid identifier");
         }
 
         const user = await this.usersRepository.findById(id);
 
         if (!user) {
-            throw new Error("User already does not exists.")
+            throw new AppError("User already does not exists.")
         }
 
         await this.usersRepository.delete(id);

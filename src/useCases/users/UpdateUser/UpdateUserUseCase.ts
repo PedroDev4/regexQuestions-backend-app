@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateUserDTO } from "../../../DTOs/IUpdateUserDTO";
+import { AppError } from "../../../Errors/AppError";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
 @injectable()
@@ -14,7 +15,7 @@ class UpdateUserUseCase {
         const user = await this.usersRepository.findById(id);
 
         if (!user) {
-            throw new Error(`User ${id} not found`);
+            throw new AppError(`User ${id} not found`);
         }
 
         await this.usersRepository.update({ id, name, email, score, answeredQuestions });

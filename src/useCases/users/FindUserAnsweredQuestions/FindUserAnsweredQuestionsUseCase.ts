@@ -1,5 +1,5 @@
 import { injectable, inject } from "tsyringe";
-import { User } from "../../../entities/User";
+import { AppError } from "../../../Errors/AppError";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 
 @injectable()
@@ -12,13 +12,13 @@ class FindUserAnsweredQuestionsUseCase {
     async execute(id?: string): Promise<string[]> {
 
         if (!id) {
-            throw new Error("Invalid identifier provided");
+            throw new AppError("Invalid identifier provided");
         }
 
         const user = await this.usersRepository.findById(id);
 
         if (!user) {
-            throw new Error("User does not exists.")
+            throw new AppError("User does not exists.")
         }
 
         return user.answeredQuestions;
