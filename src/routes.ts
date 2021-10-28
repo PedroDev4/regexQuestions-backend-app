@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { request, response, Router } from "express";
 import { CreateUserController } from "./useCases/users/CreateUser/CreateUserController";
 import { FindUserByIdController } from "./useCases/users/FIndUserById/FindUserByIdController";
 import { FindUserByEmailController } from "./useCases/users/FindUserByEmail/FindUserByEmailController";
@@ -59,5 +59,9 @@ routes.get("/usersAnswers/question/:questionId", findUserAnswersByQuestionContro
 routes.get("/usersAnswers/user/:user_id", findUserAnswersByUserIdController.handle);
 routes.put("/usersAnswers/:id", updateUserAnswerController.handle);
 routes.delete("/usersAnswers/:id", deleteUserAnswerController.handle);
+
+routes.get("/", (request, response) => {
+    return response.status(200).json({ status: "health checked." })
+});
 
 export { routes }; 
