@@ -43,8 +43,9 @@ class UsersAnswersRepository implements IUsersAnswersRepository {
         });
     }
 
-    async findOneByUserId(user_id: string): Promise<UserAnswer> {
-        return await this.repository.findOne({ user_id });
+    async findOneByQuestionId(question_id: string): Promise<UserAnswer> {
+        const userAnswer = await this.repository.findOne({ question_id });
+        return userAnswer;
     }
 
     async delete(id: string): Promise<void> {
