@@ -18,10 +18,11 @@ class CreateQuestionUseCase {
         if (!title || !type || !correctAnswer || !body) {
             throw new AppError('Invalid required parameters');
         }
+        const parsedCorrectAnswer = Buffer.from(correctAnswer, 'base64').toString().trim()
 
         const question = await this.questionsRepository.create({
             body,
-            correctAnswer,
+            correctAnswer: parsedCorrectAnswer,
             title,
             type
         });
