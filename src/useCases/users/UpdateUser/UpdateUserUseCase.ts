@@ -1,24 +1,25 @@
 import { inject, injectable } from "tsyringe";
-import { IUpdateUserDTO } from "../../../DTOs/IUpdateUserDTO";
+import { IUpdateUserDTO } from "../../../DTOs/users/IUpdateUserDTO";
+import { IUserSchema } from "../../../entities/User";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class UpdateUserUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ) { }
+    ) {}
 
-    async execute({ id, name, email, score, answeredQuestions }: IUpdateUserDTO): Promise<void> {
+    async execute({ id, name, email, score, answeredQuestions }: IUpdateUserDTO): Promise<IUserSchema> {
+        const userExists = await this.usersRepository.findById(id);
 
-        const user = await this.usersRepository.findById(id);
-
-        if (!user) {
-            throw new AppError(`User ${id} not found`);
+        if (!userExists) {
+            throw new AppError(`User ${email} not found`);
         }
 
-        await this.usersRepository.update({ id, name, email, score, answeredQuestions });
+        const user = await this.usersRepository.update({ id, name, email, score, answeredQuestions });
+        return user
     }
 
 }

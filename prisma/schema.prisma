@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://xnecskff:iqZa30ExgqKL6nXrMc05QA18cIc3Z_ge@fanny.db.elephantsql.com/xnecskff?schema=public"
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  name              String
+  email             String   @unique
+  score             Int?
+  answeredQuestions Int[]
+  Answer            Answer[]
+}
+
+model Question {
+  id            Int      @id @default(autoincrement())
+  correctAnswer String
+  type          String
+  title         String
+  body          String
+  UserAnswers   Answer[]
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  userAnswer String
+  questionId Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+}

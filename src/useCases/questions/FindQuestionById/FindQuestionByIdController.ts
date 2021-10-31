@@ -9,7 +9,7 @@ class FindQuestionByIdController {
 
         const findQuestionByIdUseCase = container.resolve(FindQuestionByIdUseCase);
 
-        const question = await findQuestionByIdUseCase.execute(id);
+        const question = await findQuestionByIdUseCase.execute(+id);
 
         return response.status(200).json(question);
     }

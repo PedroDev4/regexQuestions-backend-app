@@ -1,16 +1,15 @@
 import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class DeleteUserUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ) { }
+    ) {}
 
-    async execute(id: string): Promise<void> {
-
+    async execute(id: number): Promise<void> {
         if (!id) {
             throw new AppError("Invalid identifier");
         }

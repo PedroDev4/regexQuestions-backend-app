@@ -1,16 +1,16 @@
 import { injectable, inject } from "tsyringe";
-import { User } from "../../../entities/User";
+import { IUserSchema } from "../../../entities/User";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class FindUserByEmailUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ) { }
+    ) {}
 
-    async execute(email: string): Promise<User> {
+    async execute(email: string): Promise<IUserSchema> {
 
         if (!email) {
             throw new AppError("Invalid email provided");

@@ -1,6 +1,6 @@
 import { injectable, inject } from "tsyringe";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class FindUserAnsweredQuestionsUseCase {
@@ -9,8 +9,7 @@ class FindUserAnsweredQuestionsUseCase {
         private usersRepository: IUsersRepository
     ) { }
 
-    async execute(id?: string): Promise<string[]> {
-
+    async execute(id?: number): Promise<number[]> {
         if (!id) {
             throw new AppError("Invalid identifier provided");
         }

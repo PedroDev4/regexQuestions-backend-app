@@ -10,7 +10,7 @@ class FindUserAnsweredQuestionsController {
 
         const findUserAnsweredQuestionsUseCase = container.resolve(FindUserAnsweredQuestionsUseCase);
 
-        const userAnsweredQuestions = await findUserAnsweredQuestionsUseCase.execute(id);
+        const userAnsweredQuestions = await findUserAnsweredQuestionsUseCase.execute(+id);
 
         return response.status(200).json(userAnsweredQuestions);
     }

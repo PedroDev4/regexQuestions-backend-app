@@ -10,7 +10,7 @@ class DeleteQuestionController {
 
         const deleteQuestionUseCase = container.resolve(DeleteQuestionUseCase);
 
-        await deleteQuestionUseCase.execute(id);
+        await deleteQuestionUseCase.execute(+id);
 
         return response.status(200).send();
     }

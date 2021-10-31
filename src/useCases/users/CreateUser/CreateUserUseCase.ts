@@ -1,17 +1,17 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateUserDTO } from "../../../DTOs/ICreateUserDTO";
-import { User } from "../../../entities/User";
+import { ICreateUserDTO } from "../../../DTOs/users/ICreateUserDTO";
+import { IUserSchema } from "../../../entities/User";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class CreateUserUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ) { }
+    ) {}
 
-    async execute({ name, email, answeredQuestions = [], score = 0 }: ICreateUserDTO): Promise<User> {
+    async execute({ name, email, answeredQuestions = [], score = 0 }: ICreateUserDTO): Promise<IUserSchema> {
 
         const userExists = await this.usersRepository.findByEmail(email);
 

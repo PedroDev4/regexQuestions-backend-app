@@ -1,10 +1,10 @@
 import { container } from "tsyringe";
-import { QuestionsRepository } from "../../repositories/implementations/QuestionsRepository";
-import { UsersAnswersRepository } from "../../repositories/implementations/UsersAnswersRepository";
-import { UsersRepository } from "../../repositories/implementations/UsersRepository";
-import { IQuestionsRepository } from "../../repositories/IQuestionsRepository";
-import { IUsersAnswersRepository } from "../../repositories/IUsersAnswersRepository";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { QuestionsRepository } from "../../repositories/questions/implementations/QuestionsRepository";
+import { AnswersRepository } from "../../repositories/answers/implementations/AnswersRepository";
+import { UsersRepository } from "../../repositories/users/implementations/UsersRepository";
+import { IQuestionsRepository } from "../../repositories/questions/IQuestionsRepository";
+import { IUsersRepository } from "../../repositories/users/IUsersRepository";
+import { IAnswersRepository } from "../../repositories/answers/IAnswersRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -16,7 +16,7 @@ container.registerSingleton<IQuestionsRepository>(
     QuestionsRepository
 );
 
-container.registerSingleton<IUsersAnswersRepository>(
-    "UsersAnswersRepository",
-    UsersAnswersRepository
+container.registerSingleton<IAnswersRepository>(
+    "AnswersRepository",
+    AnswersRepository
 );

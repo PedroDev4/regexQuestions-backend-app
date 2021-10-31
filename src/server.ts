@@ -2,14 +2,11 @@ import "reflect-metadata";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import { routes } from "./routes";
-import { connectToDB } from "./database";
 import "./CrossCutting/Container/index";
 import { AppError } from "./Errors/AppError";
 
 const app = express();
 app.use(express.json());
-
-connectToDB();
 
 app.use(routes);
 
@@ -18,6 +15,8 @@ app.use(
         if (err instanceof AppError) {
             return response.status(err.statusCode).json({ error: err.message });
         }
+
+        console.log(err)
 
         return response.status(500).json({
             status: "error",

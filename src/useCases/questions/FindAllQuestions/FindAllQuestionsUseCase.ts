@@ -1,15 +1,15 @@
 import { inject, injectable } from "tsyringe";
-import { Question } from "../../../entities/Question";
-import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
+import { IQuestionSchema } from "../../../entities/Question";
+import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";
 
 @injectable()
 class FindAllQuestionsUseCase {
     constructor(
         @inject('QuestionsRepository')
         private questionsRepository: IQuestionsRepository
-    ) { }
+    ) {}
 
-    async execute(): Promise<Question[]> {
+    async execute(): Promise<IQuestionSchema[]> {
         return await this.questionsRepository.findAll();
     }
 }

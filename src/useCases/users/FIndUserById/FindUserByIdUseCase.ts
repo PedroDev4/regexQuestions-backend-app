@@ -1,17 +1,17 @@
-import { injectable, inject } from "tsyringe";
-import { User } from "../../../entities/User";
+import { inject, injectable } from "tsyringe";
+import { IUserSchema } from "../../../entities/User";
 import { AppError } from "../../../Errors/AppError";
-import { IUsersRepository } from "../../../repositories/IUsersRepository";
+import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 
 @injectable()
 class FindUserByIdUseCase {
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
-    ) { }
+    ) {}
 
-    async execute(id: string): Promise<User> {
-
+    async execute(id: number): Promise<IUserSchema> {
+        console.log(id)
         if (!id) {
             throw new AppError("Invalid identifier");
         }

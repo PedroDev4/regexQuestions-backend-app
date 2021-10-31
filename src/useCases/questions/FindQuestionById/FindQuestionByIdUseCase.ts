@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { Question } from "../../../entities/Question";
+import { IQuestionSchema } from "../../../entities/Question";
 import { AppError } from "../../../Errors/AppError";
-import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
+import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";
 
 @injectable()
 class FindQuestionByIdUseCase {
@@ -10,7 +10,7 @@ class FindQuestionByIdUseCase {
         private questionsRepository: IQuestionsRepository
     ) { }
 
-    async execute(id: string): Promise<Question> {
+    async execute(id: number): Promise<IQuestionSchema> {
         if (!id) {
             throw new AppError('Invalid provided identifier');
         }

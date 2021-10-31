@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../Errors/AppError";
-import { IQuestionsRepository } from "../../../repositories/IQuestionsRepository";
+import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";
 
 
 @injectable()
@@ -9,9 +9,9 @@ class DeleteQuestionUseCase {
     constructor(
         @inject('QuestionsRepository')
         private questionsRepository: IQuestionsRepository
-    ) { }
+    ) {}
 
-    async execute(id: string): Promise<void> {
+    async execute(id: number): Promise<void> {
 
         const question = await this.questionsRepository.findById(id);
 
