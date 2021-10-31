@@ -5,9 +5,11 @@
     "username": "xnecskff",
     "password": "iqZa30ExgqKL6nXrMc05QA18cIc3Z_ge",
     "database": "xnecskff",
-    "entities": ["dist/**/*.entity.js"],
+    "entities": [
+        "src/**/*.entity.{ts,js}"
+    ],
     "migrations": [
-        "./src/database/migrations/*.ts"
+        "src/database/migrations/**/*.{ts,js}"
     ],
     "cli": {
         "migrationsDir": "./src/database/migrations"
