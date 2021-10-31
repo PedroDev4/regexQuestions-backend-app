@@ -6,7 +6,7 @@
     "password": "iqZa30ExgqKL6nXrMc05QA18cIc3Z_ge",
     "database": "xnecskff",
     "entities": [
-        "**/src/entity/*{.ts,.js}"
+        "entity/*.js"
     ],
     "migrations": [
         "./src/database/migrations/*.ts"
