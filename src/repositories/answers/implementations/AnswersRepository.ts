@@ -1,7 +1,7 @@
 import { PrismaClient } from ".prisma/client";
 import { ICreateAnswerDTO } from "../../../DTOs/answers/ICreateAnswerDTO";
 import { IUpdateAnswerDTO } from "../../../DTOs/answers/IUpdateAnswerDTO";
-import { IAnswerSchema } from "../../../entities/Answer";
+import { IAnswerSchema } from "../../../entities/IAnswer";
 import { IAnswersRepository } from "../IAnswersRepository";
 
 
@@ -9,15 +9,19 @@ class AnswersRepository implements IAnswersRepository {
     constructor(private answersRepository = new PrismaClient().answer) {}
 
     async create({ questionId, userAnswer, userId, }: ICreateAnswerDTO): Promise<IAnswerSchema> {
-        const answer = this.answersRepository.create({
+        const answer = await this.answersRepository.create({
             data: { userAnswer, questionId, userId }
         });
 
         return answer;
     }
 
+    async createMany(answers: ICreateAnswerDTO[]): Promise<void> {
+        await this.answersRepository.createMany({ data: answers })
+    }
+
     async update({ id, questionId, userAnswer, userId }: IUpdateAnswerDTO): Promise<IAnswerSchema> {
-        const answer = this.answersRepository.update({
+        const answer = await this.answersRepository.update({
             data: {
                 id,
                 questionId,

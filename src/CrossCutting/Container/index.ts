@@ -5,6 +5,8 @@ import { UsersRepository } from "../../repositories/users/implementations/UsersR
 import { IQuestionsRepository } from "../../repositories/questions/IQuestionsRepository";
 import { IUsersRepository } from "../../repositories/users/IUsersRepository";
 import { IAnswersRepository } from "../../repositories/answers/IAnswersRepository";
+import { IArticleRepository } from "../../repositories/article/IArticleRepository";
+import { ArticleRepository } from "../../repositories/article/implementations/ArticleRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -20,3 +22,5 @@ container.registerSingleton<IAnswersRepository>(
     "AnswersRepository",
     AnswersRepository
 );
+
+container.registerSingleton<IArticleRepository>('ArticleRepository', ArticleRepository)

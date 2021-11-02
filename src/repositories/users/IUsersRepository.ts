@@ -1,6 +1,6 @@
 import { ICreateUserDTO } from "../../DTOs/users/ICreateUserDTO";
 import { IUpdateUserDTO } from "../../DTOs/users/IUpdateUserDTO";
-import { IUserSchema } from "../../entities/User";
+import { IUserSchema } from "../../entities/IUser";
 
 interface IUsersRepository {
     create({ name, email, answeredQuestions, score }: ICreateUserDTO): Promise<IUserSchema>

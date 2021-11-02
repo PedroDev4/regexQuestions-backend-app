@@ -1,7 +1,7 @@
 import { PrismaClient } from ".prisma/client";
 import { ICreateQuestionsDTO } from "../../../DTOs/questions/ICreateQuestionDTO";
 import { IUpdateQuestionsDTO } from "../../../DTOs/questions/IUpdateQuestionDTO";
-import { IQuestionSchema } from "../../../entities/Question";
+import { IQuestionSchema } from "../../../entities/IQuestion";
 import { IQuestionsRepository } from "../IQuestionsRepository";
 
 

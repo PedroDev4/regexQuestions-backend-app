@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IQuestionSchema } from "../../../entities/Question";
+import { IQuestionSchema } from "../../../entities/IQuestion";
 import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";
 
 @injectable()

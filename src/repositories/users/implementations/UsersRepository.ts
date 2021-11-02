@@ -1,7 +1,7 @@
 import { PrismaClient } from ".prisma/client";
 import { ICreateUserDTO } from "../../../DTOs/users/ICreateUserDTO";
 import { IUpdateUserDTO } from "../../../DTOs/users/IUpdateUserDTO";
-import { IUserSchema } from "../../../entities/User";
+import { IUserSchema } from "../../../entities/IUser";
 import { IUsersRepository } from "../IUsersRepository";
 
 

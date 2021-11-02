@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IAnswerSchema } from "../../../entities/Answer";
+import { IAnswerSchema } from "../../../entities/IAnswer";
 import { AppError } from "../../../Errors/AppError";
 import { IAnswersRepository } from "../../../repositories/answers/IAnswersRepository";
 

@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { ICreateUserDTO } from "../../../DTOs/users/ICreateUserDTO";
-import { IUserSchema } from "../../../entities/User";
+import { IUserSchema } from "../../../entities/IUser";
 import { AppError } from "../../../Errors/AppError";
 import { IUsersRepository } from "../../../repositories/users/IUsersRepository";
 

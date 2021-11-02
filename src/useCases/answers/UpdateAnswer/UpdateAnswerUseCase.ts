@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUpdateAnswerDTO } from "../../../DTOs/answers/IUpdateAnswerDTO";
-import { IAnswerSchema } from "../../../entities/Answer";
+import { IAnswerSchema } from "../../../entities/IAnswer";
 import { AppError } from "../../../Errors/AppError";
 import { IAnswersRepository } from "../../../repositories/answers/IAnswersRepository";
 import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";

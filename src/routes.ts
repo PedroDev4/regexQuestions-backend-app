@@ -1,10 +1,16 @@
 import { Router } from "express";
 import { CreateAnswerController } from "./useCases/answers/CreateAnswer/CreateAnswerController";
+import { CreateManyAnswersController } from "./useCases/answers/CreateManyAnswers/CreateManyAnswersController";
 import { DeleteAnswerController } from "./useCases/answers/DeleteAnswer/DeleteAnswerController";
 import { FindAnswerByIdController } from "./useCases/answers/FindAnswerById/FindAnswerByIdController";
 import { FindAnswersByQuestionController } from "./useCases/answers/FindAnswersByQuestion/FindAnswersByQuestionController";
 import { FindAnswersByUserIdController } from "./useCases/answers/FindAnswersByUserId/FindAnswersByUserIdController";
 import { UpdateAnswerController } from "./useCases/answers/UpdateAnswer/UpdateAnswerController";
+import { CreateArticleController } from "./useCases/article/CreateArticle/CreateArticleController";
+import { DeleteArticleController } from "./useCases/article/DeleteArticle/DeleteArticleController";
+import { FindAllArticlesController } from "./useCases/article/FindAllArticles/FindAllArticlesController";
+import { FindArticleByIdController } from "./useCases/article/FindArticleById/FindArticleByIdController";
+import { UpdateArticleController } from "./useCases/article/UpdateArticle/UpdateArticleController";
 import { CreateQuestionController } from "./useCases/questions/CreateQuestion/CreateQuestionController";
 import { DeleteQuestionController } from "./useCases/questions/DeleteQuestion/DeleteQuestionController";
 import { FindAllQuestionsController } from "./useCases/questions/FindAllQuestions/FindAllQuestionsController";
@@ -39,6 +45,13 @@ const findAnswerById = new FindAnswerByIdController();
 const findAnswersByUserIdController = new FindAnswersByUserIdController();
 const findAnswersByQuestionController = new FindAnswersByQuestionController();
 const updateAnswerController = new UpdateAnswerController();
+const createManyAnswersController = new CreateManyAnswersController()
+
+const createArticleController = new CreateArticleController()
+const updateArticleController = new UpdateArticleController()
+const deleteArticleController = new DeleteArticleController()
+const findArticleByIdController = new FindArticleByIdController()
+const findAllArticlesController = new FindAllArticlesController()
 
 routes.post("/users", createUserController.handle);
 routes.get("/users/:id", findUserByIdController.handle);
@@ -54,14 +67,21 @@ routes.put("/questions/:id", updateQuestionController.handle);
 routes.delete("/questions/:id", deleteQuestionController.handle);
 
 routes.post("/answers", createAnswerController.handle);
+routes.post("/answers/batch", createManyAnswersController.handle);
 routes.get("/answers/:id", findAnswerById.handle);
 routes.get("/answers/question/:questionId", findAnswersByQuestionController.handle);
 routes.get("/answers/user/:userId", findAnswersByUserIdController.handle);
 routes.put("/answers/:id", updateAnswerController.handle);
 routes.delete("/answers/:id", deleteAnswerController.handle);
 
+routes.post('/article', createArticleController.handle)
+routes.put('/article/:id', updateArticleController.handle)
+routes.delete('/article/:id', deleteArticleController.handle)
+routes.get('/article/:id', findArticleByIdController.handle)
+routes.get('/articles', findAllArticlesController.handle)
+
 routes.get("/", (request, response) => {
-    return response.status(200).json({ status: "health checked." })
+    return response.status(200).send('Server is running')
 });
 
 export { routes };

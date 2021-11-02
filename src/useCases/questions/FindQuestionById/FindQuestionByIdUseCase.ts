@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { IQuestionSchema } from "../../../entities/Question";
+import { IQuestionSchema } from "../../../entities/IQuestion";
 import { AppError } from "../../../Errors/AppError";
 import { IQuestionsRepository } from "../../../repositories/questions/IQuestionsRepository";
 
