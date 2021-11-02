@@ -6,6 +6,7 @@ interface IAnswersRepository {
     create({ questionId,
         userAnswer, userId }: ICreateAnswerDTO): Promise<IAnswerSchema>;
     createMany(answers: ICreateAnswerDTO[]): Promise<void>
+    updateMany(answers: IUpdateAnswerDTO[]): Promise<void>
     update({ id, userId, userAnswer, questionId }: IUpdateAnswerDTO): Promise<IAnswerSchema>
     findById(id: number): Promise<IAnswerSchema>;
     findByQuestionId(questionId: number): Promise<IAnswerSchema[]>;

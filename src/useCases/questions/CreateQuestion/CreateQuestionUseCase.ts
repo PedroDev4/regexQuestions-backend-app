@@ -18,7 +18,7 @@ class CreateQuestionUseCase {
             throw new AppError('Invalid required parameters');
         }
 
-        const parsedCorrectAnswer = Buffer.from(correctAnswer, 'base64').toString().trim()
+        const parsedCorrectAnswer = type === 'string' ? Buffer.from(correctAnswer, 'base64').toString().trim() : correctAnswer
 
         const question = await this.questionsRepository.create({
             body,

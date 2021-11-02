@@ -36,6 +36,17 @@ class AnswersRepository implements IAnswersRepository {
         return answer;
     }
 
+    async updateMany(answers: IUpdateAnswerDTO[]): Promise<void> {
+        await Promise.all(answers.map(async answer => {
+            await this.answersRepository.update({
+                data: answer,
+                where: {
+                    id: answer.id
+                }
+            })
+        }))
+    }
+
     async findById(id: number): Promise<IAnswerSchema> {
         const answer = await this.answersRepository.findUnique({ where: { id } });
         return answer

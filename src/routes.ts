@@ -6,6 +6,7 @@ import { FindAnswerByIdController } from "./useCases/answers/FindAnswerById/Find
 import { FindAnswersByQuestionController } from "./useCases/answers/FindAnswersByQuestion/FindAnswersByQuestionController";
 import { FindAnswersByUserIdController } from "./useCases/answers/FindAnswersByUserId/FindAnswersByUserIdController";
 import { UpdateAnswerController } from "./useCases/answers/UpdateAnswer/UpdateAnswerController";
+import { UpdateManyAnswersController } from "./useCases/answers/UpdateManyAnswers/UpdateManyAnswersController";
 import { CreateArticleController } from "./useCases/article/CreateArticle/CreateArticleController";
 import { DeleteArticleController } from "./useCases/article/DeleteArticle/DeleteArticleController";
 import { FindAllArticlesController } from "./useCases/article/FindAllArticles/FindAllArticlesController";
@@ -46,6 +47,7 @@ const findAnswersByUserIdController = new FindAnswersByUserIdController();
 const findAnswersByQuestionController = new FindAnswersByQuestionController();
 const updateAnswerController = new UpdateAnswerController();
 const createManyAnswersController = new CreateManyAnswersController()
+const updateManyAnswersController = new UpdateManyAnswersController()
 
 const createArticleController = new CreateArticleController()
 const updateArticleController = new UpdateArticleController()
@@ -68,6 +70,7 @@ routes.delete("/questions/:id", deleteQuestionController.handle);
 
 routes.post("/answers", createAnswerController.handle);
 routes.post("/answers/batch", createManyAnswersController.handle);
+routes.put("/answers/batch", updateManyAnswersController.handle)
 routes.get("/answers/:id", findAnswerById.handle);
 routes.get("/answers/question/:questionId", findAnswersByQuestionController.handle);
 routes.get("/answers/user/:userId", findAnswersByUserIdController.handle);

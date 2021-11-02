@@ -9,11 +9,12 @@ class UpdateQuestionController {
 
         const updateQuestionUseCase = container.resolve(UpdateQuestionUseCase);
 
+        const parsedCorrectAnswer = type === 'string' ? Buffer.from(correctAnswer, 'base64').toString().trim() : correctAnswer
 
         const question = await updateQuestionUseCase.execute({
             id: +id,
             body,
-            correctAnswer,
+            correctAnswer: parsedCorrectAnswer,
             title,
             type
         });
