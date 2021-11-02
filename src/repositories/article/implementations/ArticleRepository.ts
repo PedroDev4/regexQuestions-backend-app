@@ -12,7 +12,7 @@ class ArticleRepository implements IArticleRepository {
     const article = await this.articleRepository.create({
       data: {
         author, content, publishedAt, title, articleLink,
-        coverLink, subAuthor, videoLink
+        coverLink, subAuthor, videoLink, randomId: Math.floor(Math.random() * (6 - 0 + 1)) + 0
       }
     })
 

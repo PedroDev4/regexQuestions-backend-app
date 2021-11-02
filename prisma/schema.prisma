@@ -39,6 +39,7 @@ model Answer {
 
 model Article {
   id          Int      @id @default(autoincrement())
+  randomId    Int      @default(0)
   title       String
   content     String
   author      String
