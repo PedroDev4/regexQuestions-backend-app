@@ -16,6 +16,7 @@ import { CreateQuestionController } from "./useCases/questions/CreateQuestion/Cr
 import { DeleteQuestionController } from "./useCases/questions/DeleteQuestion/DeleteQuestionController";
 import { FindAllQuestionsController } from "./useCases/questions/FindAllQuestions/FindAllQuestionsController";
 import { FindQuestionByIdController } from "./useCases/questions/FindQuestionById/FindQuestionByIdController";
+import { GetQuestionMatrixController } from "./useCases/questions/GetQuestionMatrix/GetQuestionMatrixController";
 import { UpdateQuestionController } from "./useCases/questions/UpdateQuestion/UpdateQuestionController";
 import { CreateUserController } from "./useCases/users/CreateUser/CreateUserController";
 import { DeleteUserController } from "./useCases/users/DeleteUser/DeleteUserController";
@@ -23,7 +24,6 @@ import { FindUserAnsweredQuestionsController } from "./useCases/users/FindUserAn
 import { FindUserByEmailController } from "./useCases/users/FindUserByEmail/FindUserByEmailController";
 import { FindUserByIdController } from "./useCases/users/FIndUserById/FindUserByIdController";
 import { UpdateUserController } from "./useCases/users/UpdateUser/UpdateUserController";
-
 
 const routes = Router();
 
@@ -39,6 +39,7 @@ const findQuestionByIdController = new FindQuestionByIdController();
 const findAllQuestionsController = new FindAllQuestionsController();
 const updateQuestionController = new UpdateQuestionController();
 const deleteQuestionController = new DeleteQuestionController();
+const getQuestionsMatrixController = new GetQuestionMatrixController()
 
 const createAnswerController = new CreateAnswerController();
 const deleteAnswerController = new DeleteAnswerController();
@@ -57,6 +58,7 @@ const findAllArticlesController = new FindAllArticlesController()
 
 routes.post("/users", createUserController.handle);
 routes.get("/users/:id", findUserByIdController.handle);
+routes.get('/matrix/questions', getQuestionsMatrixController.handle);
 routes.get("/users/email/:email", findUserByEmailController.handle);
 routes.get("/users/questions/:id", findUserAnsweredQuestionsController.handle);
 routes.put("/users/:id", updateUserController.handle);
