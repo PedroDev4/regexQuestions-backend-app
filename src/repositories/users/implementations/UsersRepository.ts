@@ -33,7 +33,9 @@ class UsersRepository implements IUsersRepository {
     }
 
     async updateScore(score: number, id: number): Promise<IUserSchema> {
-        const userById = await this.findById(id)
+        const userById = await this.usersRepository.findUnique({ where: { id } });
+
+        console.log(userById)
 
         const user = await this.usersRepository.update({
             where: { id }, data: { score: userById.score + score }

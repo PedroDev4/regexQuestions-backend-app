@@ -64,10 +64,10 @@ const findAlternativesByQuestionIdController = new FindAlternativesByQuestionIdC
 routes.post("/users", createUserController.handle);
 routes.get("/users/:id", findUserByIdController.handle);
 routes.get('/matrix/questions', getQuestionsMatrixController.handle);
+routes.put("/score/users/:userId/:score", updateUserScore.execute)
 routes.get("/users/email/:email", findUserByEmailController.handle);
 routes.get("/users/questions/:id", findUserAnsweredQuestionsController.handle);
 routes.put("/users/:id", updateUserController.handle);
-routes.put("/score/users/:userId/:score")
 routes.delete("/users/:id", deleteUserController.handle);
 
 routes.post("/questions", createQuestionController.handle);

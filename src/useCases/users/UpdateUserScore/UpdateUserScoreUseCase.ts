@@ -11,7 +11,7 @@ class UpdateUserScoreUseCase {
 
   async execute(userId: number, score: number): Promise<IUserSchema> {
     const user = await this.usersRepository.updateScore(userId, score)
-    
+
     return user
   }
 }
