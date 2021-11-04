@@ -25,6 +25,7 @@ import { FindUserAnsweredQuestionsController } from "./useCases/users/FindUserAn
 import { FindUserByEmailController } from "./useCases/users/FindUserByEmail/FindUserByEmailController";
 import { FindUserByIdController } from "./useCases/users/FIndUserById/FindUserByIdController";
 import { UpdateUserController } from "./useCases/users/UpdateUser/UpdateUserController";
+import { UpdateUserScoreController } from "./useCases/users/UpdateUserScore/UpdateUserScoreController";
 
 const routes = Router();
 
@@ -34,6 +35,7 @@ const findUserByEmailController = new FindUserByEmailController();
 const findUserAnsweredQuestionsController = new FindUserAnsweredQuestionsController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
+const updateUserScore = new UpdateUserScoreController()
 
 const createQuestionController = new CreateQuestionController();
 const findQuestionByIdController = new FindQuestionByIdController();
@@ -65,6 +67,7 @@ routes.get('/matrix/questions', getQuestionsMatrixController.handle);
 routes.get("/users/email/:email", findUserByEmailController.handle);
 routes.get("/users/questions/:id", findUserAnsweredQuestionsController.handle);
 routes.put("/users/:id", updateUserController.handle);
+routes.put("/score/users/:userId/:score")
 routes.delete("/users/:id", deleteUserController.handle);
 
 routes.post("/questions", createQuestionController.handle);

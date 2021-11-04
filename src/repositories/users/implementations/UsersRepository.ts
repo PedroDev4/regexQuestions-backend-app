@@ -32,6 +32,16 @@ class UsersRepository implements IUsersRepository {
         return user
     }
 
+    async updateScore(score: number, id: number): Promise<IUserSchema> {
+        const userById = await this.findById(id)
+
+        const user = await this.usersRepository.update({
+            where: { id }, data: { score: userById.score + score }
+        })
+
+        return user
+    }
+
     async findById(id: number): Promise<IUserSchema> {
         const user = await this.usersRepository.findUnique({ where: { id } });
         return user;
