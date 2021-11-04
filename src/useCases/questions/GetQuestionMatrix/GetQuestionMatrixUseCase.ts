@@ -14,7 +14,7 @@ class GetQuestionMatrixUseCase {
     const questions = await this.questionsRepository.findAll();
 
     const booleanQuestions = questions.filter(question => question.type === 'boolean')
-    const stringQuestions = questions.filter(question => question.type === 'string')
+    const stringQuestions = questions.filter(question => question.type === 'multiple')
 
     const matrixQuestions = await this.buildArray(questions, booleanQuestions, stringQuestions);
 

@@ -7,6 +7,8 @@ import { IUsersRepository } from "../../repositories/users/IUsersRepository";
 import { IAnswersRepository } from "../../repositories/answers/IAnswersRepository";
 import { IArticleRepository } from "../../repositories/article/IArticleRepository";
 import { ArticleRepository } from "../../repositories/article/implementations/ArticleRepository";
+import { IAlternativesRepository } from "../../repositories/alternatives/IAlternativesRepository";
+import { AlternativesRepository } from "../../repositories/alternatives/implementations/AlternativesRepository";
 
 container.registerSingleton<IUsersRepository>(
     "UsersRepository",
@@ -24,3 +26,4 @@ container.registerSingleton<IAnswersRepository>(
 );
 
 container.registerSingleton<IArticleRepository>('ArticleRepository', ArticleRepository)
+container.registerSingleton<IAlternativesRepository>('AlternativeRepository', AlternativesRepository)

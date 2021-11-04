@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { FindAlternativesByQuestionIdController } from "./useCases/alternatives/FindAlternativesByQuestionId/FindAlternativesByQuestionIdController";
 import { CreateAnswerController } from "./useCases/answers/CreateAnswer/CreateAnswerController";
 import { CreateManyAnswersController } from "./useCases/answers/CreateManyAnswers/CreateManyAnswersController";
 import { DeleteAnswerController } from "./useCases/answers/DeleteAnswer/DeleteAnswerController";
@@ -56,6 +57,8 @@ const deleteArticleController = new DeleteArticleController()
 const findArticleByIdController = new FindArticleByIdController()
 const findAllArticlesController = new FindAllArticlesController()
 
+const findAlternativesByQuestionIdController = new FindAlternativesByQuestionIdController()
+
 routes.post("/users", createUserController.handle);
 routes.get("/users/:id", findUserByIdController.handle);
 routes.get('/matrix/questions', getQuestionsMatrixController.handle);
@@ -84,6 +87,8 @@ routes.put('/article/:id', updateArticleController.handle)
 routes.delete('/article/:id', deleteArticleController.handle)
 routes.get('/article/:id', findArticleByIdController.handle)
 routes.get('/articles', findAllArticlesController.handle)
+
+routes.get('/alternatives/:questionId', findAlternativesByQuestionIdController.handle)
 
 routes.get("/", (request, response) => {
     return response.status(200).send('Server is running')

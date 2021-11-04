@@ -20,12 +20,13 @@ model User {
 }
 
 model Question {
-  id            Int      @id @default(autoincrement())
+  id            Int           @id @default(autoincrement())
   correctAnswer String
   type          String
   title         String
   body          String
   UserAnswers   Answer[]
+  Alternatives  Alternative[]
 }
 
 model Answer {
@@ -48,4 +49,12 @@ model Article {
   videoLink   String?
   articleLink String?
   coverLink   String?
+}
+
+model Alternative {
+  id         Int      @id @default(autoincrement())
+  body       String
+  isCorrect  Boolean
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
 }

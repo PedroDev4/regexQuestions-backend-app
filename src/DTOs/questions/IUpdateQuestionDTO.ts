@@ -4,6 +4,12 @@ interface IUpdateQuestionsDTO {
     title?: string;
     type?: string;
     body?: string;
+    alternatives?: [{
+        id: number;
+        questionId: number;
+        body: string;
+        isCorrect: boolean
+    }]
 }
 
 export { IUpdateQuestionsDTO };

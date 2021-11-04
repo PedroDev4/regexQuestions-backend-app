@@ -13,18 +13,17 @@ class CreateQuestionUseCase {
         private questionsRepository: IQuestionsRepository
     ) {}
 
-    async execute({ title, type, correctAnswer, body }: ICreateQuestionsDTO): Promise<IQuestionSchema> {
+    async execute({ title, type, correctAnswer, body, alternatives }: ICreateQuestionsDTO): Promise<IQuestionSchema> {
         if (!title || !type || !correctAnswer || !body) {
             throw new AppError('Invalid required parameters');
         }
-
-        const parsedCorrectAnswer = type === 'string' ? Buffer.from(correctAnswer, 'base64').toString().trim() : correctAnswer
-
+        
         const question = await this.questionsRepository.create({
             body,
-            correctAnswer: parsedCorrectAnswer,
+            correctAnswer,
             title,
-            type
+            type,
+            alternatives
         });
 
         return question;

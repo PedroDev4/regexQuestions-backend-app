@@ -8,20 +8,23 @@ import { IQuestionsRepository } from "../IQuestionsRepository";
 class QuestionsRepository implements IQuestionsRepository {
     constructor(private questionsRepository = new PrismaClient().question) {}
 
-    async create({ title, type, correctAnswer, body }: ICreateQuestionsDTO): Promise<IQuestionSchema> {
+    async create({ title, type, correctAnswer, body, alternatives }: ICreateQuestionsDTO): Promise<IQuestionSchema> {
         const question = await this.questionsRepository.create({
             data: {
                 title,
                 type,
                 body,
-                correctAnswer
+                correctAnswer,
+                Alternatives: {
+                    create: alternatives
+                }
             }
         });
 
         return question;
     }
 
-    async update({ id, title, type, body, correctAnswer }: IUpdateQuestionsDTO): Promise<IQuestionSchema> {
+    async update({ id, title, type, body, correctAnswer, alternatives }: IUpdateQuestionsDTO): Promise<IQuestionSchema> {
         const question = await this.questionsRepository.update({
             data: {
                 id, title, type, body, correctAnswer
@@ -33,12 +36,20 @@ class QuestionsRepository implements IQuestionsRepository {
     }
 
     async findById(id: number): Promise<IQuestionSchema> {
-        const question = await this.questionsRepository.findUnique({ where: { id } });
+        const question = await this.questionsRepository.findUnique({
+            where: { id }, include: {
+                Alternatives: {
+                    where: {
+                        questionId: id
+                    }
+                }
+            }
+        });
         return question
     }
 
     async findAll(): Promise<IQuestionSchema[]> {
-        const questions = await this.questionsRepository.findMany()
+        const questions = await this.questionsRepository.findMany({ include: { Alternatives: {} } })
         return questions
     }
 
